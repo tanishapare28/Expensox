@@ -874,33 +874,80 @@ body {
 
   .main-content {
     padding: 16px;
-    margin-bottom: 90px;
+    margin-bottom: 180px;
   }
 
   .table-card {
     padding: 16px;
+    overflow-x: visible;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    display: block;
+  }
+
+  .expense-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .expense-table thead,
+  .expense-table tbody,
+  .expense-table tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
   }
 
   .expense-table th,
   .expense-table td {
-    padding: 12px 8px;
+    padding: 12px 6px;
+    font-size: 11px;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+
+  .expense-table th:first-child,
+  .expense-table td:first-child {
+    width: 40px;
+  }
+
+  .expense-table th:nth-child(2),
+  .expense-table td:nth-child(2) {
+    width: 50px;
+  }
+
+  .expense-table input[type="text"],
+  .expense-table input[type="number"],
+  .expense-table input[type="date"],
+  .expense-table select {
+    padding: 8px 6px;
     font-size: 12px;
+    min-width: 80px;
   }
 
   .summary-box {
     grid-template-columns: 1fr;
+    margin-bottom: 30px;
+  }
+
+  .summary-item {
+    padding: 20px;
   }
 
   .footer {
     flex-direction: column;
     gap: 12px;
-    padding: 16px;
+    padding: 20px 16px;
   }
 
   .footer-left,
   .footer-center,
   .footer-right {
     width: 100%;
+    justify-content: center;
   }
 
   .login-box {
@@ -915,7 +962,7 @@ body {
 
 @media (max-width: 480px) {
   .navbar-right {
-    gap: 12px;
+    gap: 8px;
   }
 
   .user-name {
@@ -928,21 +975,199 @@ body {
     font-size: 14px;
   }
 
-  .table-wrapper {
-    font-size: 12px;
+  .main-content {
+    padding: 12px;
+    margin-bottom: 200px;
   }
 
-  .expense-table th,
+  .table-card {
+    padding: 12px;
+  }
+
+  .table-card h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .table-wrapper {
+    overflow-x: visible;
+    overflow-y: visible;
+  }
+
+  .expense-table {
+    width: 100%;
+    display: block;
+  }
+
+  .expense-table thead {
+    display: none;
+  }
+
+  .expense-table tbody {
+    display: block;
+  }
+
+  .expense-table tr {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 16px;
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 12px;
+    border: 2px solid rgba(102, 126, 234, 0.1);
+  }
+
   .expense-table td {
-    padding: 8px 4px;
+    display: block;
+    border: none;
+    padding: 8px 0;
+    text-align: left;
+  }
+
+  .expense-table td:first-child {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 12px;
+  }
+
+  .expense-table td:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 16px;
+  }
+
+  .expense-table td:nth-child(2)::before {
+    content: "Serial: ";
+    font-weight: 400;
+    color: var(--text-secondary);
+    font-size: 12px;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .expense-table td:nth-child(3) {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .expense-table td:nth-child(3)::before {
+    content: "Event Name";
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 12px;
+    display: block;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .expense-table td:nth-child(4) {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+
+  .expense-table td:nth-child(4)::before {
+    content: "Amount";
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 12px;
+    display: block;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .expense-table td:nth-child(5) {
+    grid-column: 1 / -1;
+    grid-row: 4;
+  }
+
+  .expense-table td:nth-child(5)::before {
+    content: "Type";
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 12px;
+    display: block;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .expense-table td:nth-child(6) {
+    grid-column: 1 / -1;
+    grid-row: 5;
+  }
+
+  .expense-table td:nth-child(6)::before {
+    content: "Date";
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 12px;
+    display: block;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .expense-table td:nth-child(7) {
+    grid-column: 1 / -1;
+    grid-row: 6;
+  }
+
+  .expense-table td:nth-child(7)::before {
+    content: "Running Total";
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 12px;
+    display: block;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .expense-table td:nth-child(7) {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .expense-table input[type="text"],
+  .expense-table input[type="number"],
+  .expense-table input[type="date"],
+  .expense-table select {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  .expense-table input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+
+  .action-bar {
+    margin-bottom: 16px;
+  }
+
+  .btn {
+    padding: 14px 20px;
+    font-size: 14px;
+    width: 100%;
   }
 
   .summary-box {
-    gap: 12px;
+    gap: 16px;
+    margin-bottom: 40px;
   }
 
   .summary-item {
-    padding: 16px;
+    padding: 20px;
   }
 
   .summary-label {
@@ -950,15 +1175,22 @@ body {
   }
 
   .summary-value {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   .footer {
-    font-size: 12px;
+    font-size: 11px;
+    padding: 20px 12px;
   }
 
   .logout-btn {
-    padding: 6px 10px;
+    padding: 6px 12px;
     font-size: 11px;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 24px;
+    margin: 10px;
   }
 }
